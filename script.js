@@ -71,18 +71,17 @@ function startTimer() {
 }
 
 function nextSet() {
+    if (currentSet >= totalSets) {
+        resetTimer();
+        return; 
+    }
     console.log(`Set ${currentSet + 1} of ${totalSets}`);
     currentSet++;
-    if (currentSet > totalSets) {
-        resetTimer();
-        return;
-    }
     time = 0;
-    workoutState = 'active';  // Begin with active stage for each set
+    workoutState = 'active'; // Begin with active stage for each set
     updateDisplay();
-    timer = setInterval(updateTimeContinuously, 100);  // Use a continuous update interval of 100ms
+    timer = setInterval(updateTimeContinuously, 100); // Use a continuous update interval of 100ms
 }
-
 function updateTimeContinuously() {
     let totalDuration;
 
@@ -90,8 +89,10 @@ function updateTimeContinuously() {
         totalDuration = customWorkout.active;
     } else if (workoutState === 'break') {
         totalDuration = customWorkout.switchTime;
-    } else if (workoutState === 'rest') {
+    } else if (workoutState === 'rest' && customWorkout.rest > 0)  {
         totalDuration = customWorkout.rest;
+    }else {
+        totalDuration = 0; 
     }
 
     time += 0.1;  // Increment time by 100ms (0.1 seconds)
@@ -134,7 +135,8 @@ function updateDisplay() {
     // Display in the format 00:00:000
     timeDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
     stateDisplay.textContent = workoutState.charAt(0).toUpperCase() + workoutState.slice(1);
-
+    const setDisplay = document.getElementById('setDisplay');
+    setDisplay.textContent = `Set ${currentSet}/${totalSets}`;
     timerSection.className = workoutState;  // Apply background color based on workout state
 
     // Determine the correct totalDuration for the current state

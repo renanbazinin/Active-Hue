@@ -240,3 +240,14 @@ h1, h2 {
 .info-mark:hover .info-popup {
     display: block;
 }
+
+
+#setDisplay {
+    font-size: 1.2rem;
+    color: #555; /* Soft grey for text */
+    margin-top: 10px;
+    position: absolute;
+    top: 60px; /* Adjust position relative to stateDisplay */
+    left: 50%;
+    transform: translateX(-50%);
+}
