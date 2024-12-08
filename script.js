@@ -165,3 +165,17 @@ function updateDisplay() {
     let progress = (time / totalDuration) * circumference;
     circle.style.strokeDashoffset = `${circumference - progress}`;
 }
+
+
+//let isPaused = false;
+function toggleTimer() {
+    if (isRunning) {
+        clearInterval(timer);
+        isRunning = false;
+        console.log("Timer paused");
+    } else {
+        isRunning = true;
+        console.log("Timer resumed");
+        timer = setInterval(updateTimeContinuously, 100); // Resume the timer
+    }
+}

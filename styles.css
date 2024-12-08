@@ -251,3 +251,76 @@ h1, h2 {
     left: 50%;
     transform: translateX(-50%);
 }
+
+
+.button-container {
+    margin-top: 0; /* Reset any previous margins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 105%; /* Position below the progress circle */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+
+input[type="checkbox"] {
+    display: none; /* Hide the checkbox */
+}
+
+.play-pause {
+    width: 60px;
+    height: 60px;
+    background-color: #4CAF50; /* Default play button color */
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.play-pause:hover {
+    background-color: #45a049; /* Slightly darker on hover */
+}
+
+.play, .pause {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.play div {
+    width: 0;
+    height: 0;
+    border-left: 15px solid white; /* Play triangle */
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.pause div {
+    width: 8px;
+    height: 20px;
+    background-color: white; /* Pause bars */
+    margin: 0 3px; /* Space between the bars */
+    display: inline-block;
+}
+
+/* Default State: Show Play, Hide Pause */
+.pause {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+input[type="checkbox"]:checked + .play-pause .play {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+input[type="checkbox"]:checked + .play-pause .pause {
+    opacity: 1;
+    transform: scale(1);
+}
+

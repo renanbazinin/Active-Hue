@@ -76,6 +76,21 @@
         </div>
     
         <h1 id="timeDisplay">00:00:00</h1>  <!-- Time display is centered -->
+
+
+        <div class="button-container">
+            <input type="checkbox" id="playPause" />
+            <label for="playPause" class="play-pause" onclick="toggleTimer()">
+                <div class="play">
+                    <div></div>
+                </div>
+                <div class="pause">
+                    <div></div>
+                    <div></div>
+                </div>
+            </label>
+        </div>
+
     
         <button class="back-btn" onclick="redirectTo('menu')">Back to Menu</button> <!-- Button below -->
     </div>
